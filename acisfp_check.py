@@ -347,6 +347,12 @@ def calc_model(model_spec, states, start, stop, T_acisfp=None, T_acisfp_times=No
     model = xija.ThermalModel('acisfp', start=start, stop=stop,
                               model_spec=model_spec)
 
+
+    # set fetch to quiet if and only if verbose == 0
+    if opt.verbose == 0 :
+        xija.logger.setLevel(100)
+        
+
     # create a numpy array of the start and stop times in the 
     # commanded states array fetched by make_week_predict
     times = np.array([states['tstart'], states['tstop']])
